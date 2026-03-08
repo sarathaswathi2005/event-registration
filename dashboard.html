@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CampusEvents</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="dashboard-page">
+
+    <header style="border-bottom: 1px solid var(--border-color); background: white; sticky top: 0; z-index: 100;">
+        <div
+            style="padding: 1rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; width: 100%;">
+            <div class="logo"
+                style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 800; font-size: 1.25rem;">
+                <div style="background: var(--primary); color: white; padding: 0.3rem; border-radius: 6px;">
+                    <i data-lucide="graduation-cap" style="width: 20px; height: 20px;"></i>
+                </div>
+                <span>CampusEvents</span>
+            </div>
+
+            <nav style="display: flex; gap: 2rem; font-weight: 600; color: var(--text-muted); font-size: 0.9rem;">
+                <a href="dashboard.html" style="text-decoration: none; color: var(--primary);">Home</a>
+                <a href="#" style="text-decoration: none; color: inherit;">Events</a>
+                <a href="#" style="text-decoration: none; color: inherit;">My Tickets</a>
+                <a href="#" style="text-decoration: none; color: inherit;">Organizations</a>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <div style="position: relative;">
+                    <input type="text" placeholder="Search events..."
+                        style="background: #f1f5f9; border: none; padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 10px; font-size: 0.9rem; width: 250px;">
+                    <i data-lucide="search"
+                        style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); width: 16px; color: var(--text-muted);"></i>
+                </div>
+                <div style="position: relative; cursor: pointer;">
+                    <i data-lucide="bell" style="width: 20px; color: var(--text-muted);"></i>
+                    <span
+                        style="position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; border: 2px solid white;"></span>
+                </div>
+                <div
+                    style="display: flex; align-items: center; gap: 0.75rem; border-left: 1px solid var(--border-color); padding-left: 1.5rem;">
+                    <div style="text-align: right;">
+                        <span style="display: block; font-weight: 700; font-size: 0.9rem;">Alex Chen</span>
+                        <span style="display: block; font-size: 0.75rem; color: var(--text-muted);">Computer
+                            Science</span>
+                    </div>
+                    <div
+                        style="width: 40px; height: 40px; border-radius: 50%; background: #e2e8f0; overflow: hidden; border: 2px solid white; box-shadow: 0 0 0 1px #e2e8f0;">
+                        <img src="https://ui-avatars.com/api/?name=Alex+Chen&background=0554f2&color=fff" alt="Avatar"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <section style="margin-bottom: 2.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <h1 style="font-size: 2.5rem; font-weight: 800;">Welcome back, Alex! 👋</h1>
+            </div>
+            <p style="color: var(--text-muted); font-size: 1.1rem;">You have <strong
+                    style="color: var(--text-primary);">3 exciting events</strong> coming up this week.</p>
+
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <button class="btn btn-primary" style="padding: 0.8rem 1.5rem; display: flex; gap: 0.5rem;">
+                    <i data-lucide="rocket" style="width: 18px;"></i>
+                    Browse Events
+                </button>
+                <button class="btn btn-outline" style="padding: 0.8rem 1.5rem;">My Schedule</button>
+            </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(5, 84, 242, 0.1); color: var(--primary);">
+                    <i data-lucide="calendar-check"></i>
+                </div>
+                <span class="stat-value">12</span>
+                <span class="stat-label">Registered</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;">
+                    <i data-lucide="check-circle-2"></i>
+                </div>
+                <span class="stat-value">45</span>
+                <span class="stat-label">Attended</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                    <i data-lucide="star"></i>
+                </div>
+                <span class="stat-value">850</span>
+                <span class="stat-label">Earned Points</span>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                    <i data-lucide="users"></i>
+                </div>
+                <span class="stat-value">08</span>
+                <span class="stat-label">Friend Groups</span>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Main Content -->
+            <div class="main-view">
+                <div class="event-section-header">
+                    <h3 style="font-size: 1.5rem; font-weight: 800;">Featured Events</h3>
+                    <a href="#"
+                        style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.25rem;">
+                        View all <i data-lucide="chevron-right" style="width: 16px;"></i>
+                    </a>
+                </div>
+
+                <div class="event-grid">
+                    <!-- Event 1 -->
+                    <div class="event-card">
+                        <div class="event-image"
+                            style="background-image: url('assets/tech_event_thumb_1772902903570.png');">
+                            <div class="event-tag"
+                                style="background: white; color: var(--text-primary); border-radius: 8px; padding: 0.6rem; text-align: center; width: 60px;">
+                                <span
+                                    style="display: block; font-size: 0.7rem; font-weight: 800; color: var(--text-muted);">OCT</span>
+                                <span style="display: block; font-size: 1.2rem; font-weight: 800;">24</span>
+                            </div>
+                            <div class="event-like">
+                                <i data-lucide="heart" style="width: 18px;"></i>
+                            </div>
+                        </div>
+                        <div class="event-details">
+                            <span class="event-category">Technology</span>
+                            <h4 class="event-title">Annual Tech Summit 2024</h4>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i data-lucide="map-pin" style="width: 16px;"></i>
+                                    <span>Main Auditorium</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i data-lucide="clock" style="width: 16px;"></i>
+                                    <span>09:00 AM - 05:00 PM</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center;">
+                                    <div style="display: flex;">
+                                        <img src="https://ui-avatars.com/api/?name=U1"
+                                            style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid white;">
+                                        <img src="https://ui-avatars.com/api/?name=U2"
+                                            style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; margin-left: -8px;">
+                                        <img src="https://ui-avatars.com/api/?name=U3"
+                                            style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; margin-left: -8px;">
+                                    </div>
+                                    <span
+                                        style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-left: 0.5rem;">+120</span>
+                                </div>
+                                <button class="btn btn-outline"
+                                    style="padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 8px;">Register</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="event-card">
+                        <div class="event-image"
+                            style="background-image: url('assets/music_fest_thumb_1772902932363.png');">
+                            <div class="event-tag"
+                                style="background: white; color: var(--text-primary); border-radius: 8px; padding: 0.6rem; text-align: center; width: 60px;">
+                                <span
+                                    style="display: block; font-size: 0.7rem; font-weight: 800; color: var(--text-muted);">OCT</span>
+                                <span style="display: block; font-size: 1.2rem; font-weight: 800;">27</span>
+                            </div>
+                            <div class="event-like">
+                                <i data-lucide="heart" style="width: 18px;"></i>
+                            </div>
+                        </div>
+                        <div class="event-details">
+                            <span class="event-category" style="color: #a855f7;">Culture</span>
+                            <h4 class="event-title">Neon Nights Music Fest</h4>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i data-lucide="map-pin" style="width: 16px;"></i>
+                                    <span>Central Plaza</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i data-lucide="clock" style="width: 16px;"></i>
+                                    <span>07:00 PM - 11:30 PM</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; align-items: center;">
+                                    <div style="display: flex;">
+                                        <img src="https://ui-avatars.com/api/?name=U4"
+                                            style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid white;">
+                                        <img src="https://ui-avatars.com/api/?name=U5"
+                                            style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid white; margin-left: -8px;">
+                                    </div>
+                                    <span
+                                        style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-left: 0.5rem;">+450</span>
+                                </div>
+                                <button class="btn btn-outline"
+                                    style="padding: 0.5rem 1rem; font-size: 0.8rem; border-radius: 8px;">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Section (Simplified) -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem;">Trending Near You</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div
+                            style="background: white; border-radius: 16px; padding: 1rem; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                                <div
+                                    style="width: 60px; height: 60px; border-radius: 12px; background: #e2e8f0; overflow: hidden;">
+                                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=100" alt="UI"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div>
+                                    <h5 style="font-size: 1rem; font-weight: 700;">UX Design Workshop</h5>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Design Club • Today, 2:00
+                                        PM</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span
+                                    style="background: rgba(5, 84, 242, 0.1); color: var(--primary); padding: 0.3rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700;">Trending</span>
+                                <i data-lucide="chevron-right" style="width: 18px; color: var(--text-muted);"></i>
+                            </div>
+                        </div>
+                        <div
+                            style="background: white; border-radius: 16px; padding: 1rem; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                                <div
+                                    style="width: 60px; height: 60px; border-radius: 12px; background: #e2e8f0; overflow: hidden;">
+                                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=100"
+                                        alt="Yoga" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div>
+                                    <h5 style="font-size: 1rem; font-weight: 700;">Outdoor Yoga Session</h5>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted);">Wellness Center • Tomorrow,
+                                        7:00 AM</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <i data-lucide="chevron-right" style="width: 18px; color: var(--text-muted);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar-view">
+                <div class="widget">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h4 class="widget-title" style="margin-bottom: 0;">My Schedule</h4>
+                        <span style="font-size: 0.75rem; font-weight: 800; color: var(--primary);">3 Total</span>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <div class="schedule-date">
+                                <span>WED</span>
+                                <strong>23</strong>
+                            </div>
+                            <div class="schedule-info">
+                                <h5>Startup Pitch Night</h5>
+                                <p>6:00 PM • Room 402</p>
+                            </div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-date">
+                                <span>FRI</span>
+                                <strong>25</strong>
+                            </div>
+                            <div class="schedule-info">
+                                <h5>Hackathon Kickoff</h5>
+                                <p>10:00 AM • Main Lab</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline"
+                        style="width: 100%; margin-top: 1.5rem; font-size: 0.85rem; padding: 0.6rem;">View Full
+                        Calendar</button>
+                </div>
+
+                <div class="widget">
+                    <h4 class="widget-title"
+                        style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">Quick Actions
+                    </h4>
+                    <div class="quick-action">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 10px; background: rgba(5, 84, 242, 0.1); color: var(--primary); display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="layout-grid" style="width: 18px;"></i>
+                        </div>
+                        <span>Browse Categories</span>
+                    </div>
+                    <div class="quick-action">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 10px; background: rgba(249, 115, 22, 0.1); color: #f97316; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="heart-handshake" style="width: 18px;"></i>
+                        </div>
+                        <span>Volunteering Opportunities</span>
+                    </div>
+                    <div class="quick-action">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 10px; background: rgba(34, 197, 94, 0.1); color: #22c55e; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="qr-code" style="width: 18px;"></i>
+                        </div>
+                        <span>My Active Passes</span>
+                    </div>
+                    <div class="quick-action">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 10px; background: rgba(239, 68, 68, 0.1); color: #ef4444; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="alert-circle" style="width: 18px;"></i>
+                        </div>
+                        <span>Report an Issue</span>
+                    </div>
+                </div>
+
+                <div class="level-up-card">
+                    <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">Level Up Your Profile</h4>
+                    <p style="font-size: 0.8rem; opacity: 0.9;">Complete your interests to get personalized event
+                        recommendations.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.75rem; font-weight: 800;">75% COMPLETE</span>
+                        <button class="btn"
+                            style="background: white; color: var(--primary); padding: 0.4rem 1rem; font-size: 0.8rem; border-radius: 8px;">FINISH
+                            NOW</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer
+        style="background: #f8fafc; border-top: 1px solid var(--border-color); padding: 2rem 4rem; text-align: center; margin-top: 4rem;">
+        <div
+            style="max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <div class="logo"
+                style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-weight: 800; font-size: 1rem;">
+                <i data-lucide="rocket" style="width: 18px; height: 18px;"></i>
+                <span>CampusEvents © 2024</span>
+            </div>
+            <div style="display: flex; gap: 2rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
+                <a href="#" style="text-decoration: none; color: inherit;">Privacy Policy</a>
+                <a href="#" style="text-decoration: none; color: inherit;">Terms of Service</a>
+                <a href="#" style="text-decoration: none; color: inherit;">Help Center</a>
+            </div>
+            <div style="display: flex; gap: 1rem; color: var(--text-muted);">
+                <i data-lucide="globe" style="width: 18px;"></i>
+                <i data-lucide="instagram" style="width: 18px;"></i>
+                <i data-lucide="twitter" style="width: 18px;"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

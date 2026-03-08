@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Event Portal | All-in-One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* CSS from styles.css */
+        :root {
+            --primary: #0554f2;
+            --primary-hover: #0442c2;
+            --secondary: #6c757d;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Routing Utilities */
+        .page-section {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Global Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(5, 84, 242, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Auth Styles */
+        .auth-wrapper {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .auth-card {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            width: 1000px;
+            max-width: 100%;
+            min-height: 600px;
+        }
+
+        .auth-sidebar {
+            flex: 1;
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .auth-form-container {
+            flex: 1.2;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            gap: 1.5rem;
+        }
+
+        .auth-tab {
+            padding: 0.75rem 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-input-wrapper {
+            position: relative;
+        }
+
+        .form-input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(5, 84, 242, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-login-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            position: relative;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-login-text::before,
+        .social-login-text::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .social-login-text::before {
+            left: 0;
+        }
+
+        .social-login-text::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .badge-group {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-badge {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-badge-icon {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-badge-content h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .info-badge-content p {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .promo-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .promo-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .dashboard-content {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .main-view {
+            flex: 2.5;
+        }
+
+        .sidebar-view {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .event-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .event-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 1rem;
+        }
+
+        .event-tag {
+            background: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .event-like {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .event-details {
+            padding: 1.5rem;
+        }
+
+        .event-category {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .schedule-date {
+            background: #f1f5f9;
+            padding: 0.5rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 50px;
+        }
+
+        .schedule-date span {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .schedule-date strong {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .quick-action {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .quick-action:hover {
+            background: #f8fafc;
+        }
+
+        .level-up-card {
+            background: linear-gradient(135deg, #0554f2 0%, #0442c2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+        }
+
+        /* Listing/Details Unique Styles */
+        .filter-pill {
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .filter-pill.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0 1rem;
+            border-left: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .featured-card-horizontal {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .featured-img {
+            flex: 1;
+            min-height: 350px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .featured-info {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-banner {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4rem;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .detail-grid {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .speaker-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .map-box {
+            height: 300px;
+            background: #f1f5f9;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Registration Styles */
+        .register-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-header {
+            padding: 3rem 4rem;
+            border-bottom: 1px solid var(--border-color);
+            background: #f8fafc;
+        }
+
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .choice-card {
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .choice-card.active {
+            border-color: var(--primary);
+            background: rgba(5, 84, 242, 0.05);
+        }
+
+        .radio-circle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+        }
+
+        .choice-card.active .radio-circle {
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: inset 0 0 0 4px white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV START -->
+    <header id="main-nav"
+        style="display: none; border-bottom: 1px solid var(--border-color); background: white; sticky top: 0; z-index: 100;">
+        <div
+            style="padding: 1rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; width: 100%;">
+            <div class="logo"
+                style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 800; font-size: 1.25rem; cursor: pointer;"
+                onclick="navigateTo('dashboard-page')">
+                <div style="background: var(--primary); color: white; padding: 0.3rem; border-radius: 6px;">
+                    <i data-lucide="graduation-cap" style="width: 20px; height: 20px;"></i>
+                </div>
+                <span>CampusHub</span>
+            </div>
+
+            <nav style="display: flex; gap: 2rem; font-weight: 600; color: var(--text-muted); font-size: 0.9rem;">
+                <a href="javascript:void(0)" onclick="navigateTo('dashboard-page')" class="nav-link"
+                    id="nav-dashboard">Home</a>
+                <a href="javascript:void(0)" onclick="navigateTo('events-listing-page')" class="nav-link"
+                    id="nav-events">Events</a>
+                <a href="#" class="nav-link">Organizations</a>
+                <a href="#" class="nav-link">Support</a>
+            </nav>
+
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <div style="position: relative;">
+                    <input type="text" placeholder="Search events..."
+                        style="background: #f1f5f9; border: none; padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 10px; font-size: 0.9rem; width: 250px;">
+                    <i data-lucide="search"
+                        style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); width: 16px; color: var(--text-muted);"></i>
+                </div>
+                <div
+                    style="width: 40px; height: 40px; border-radius: 50%; background: #e2e8f0; border: 2px solid white; box-shadow: 0 0 0 1px #e2e8f0;">
+                    <img src="https://ui-avatars.com/api/?name=Alex+Chen&background=0554f2&color=fff" alt="Avatar"
+                        style="width: 100%; height: 100%; border-radius: 50%;">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- NAV END -->
+
+    <!-- PAGE: LOGIN -->
+    <section id="login-page" class="page-section active">
+        <header
+            style="padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; width: 100%;">
+            <div class="logo"
+                style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 800; font-size: 1.5rem;">
+                <div style="background: var(--primary); color: white; padding: 0.4rem; border-radius: 8px;">
+                    <i data-lucide=" graduation-cap"></i>
+                </div>
+                <span>CampusEvents</span>
+            </div>
+        </header>
+        <div class="auth-wrapper">
+            <div class="auth-card">
+                <div class="auth-form-container">
+                    <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Welcome Back</h1>
+                    <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 80%;">Sign in to access your
+                        dashboard.</p>
+                    <div class="auth-tabs">
+                        <div class="auth-tab active">Sign In</div>
+                        <div class="auth-tab">Register</div>
+                    </div>
+                    <form onsubmit="event.preventDefault(); navigateTo('dashboard-page')">
+                        <div class="form-group"><label class="form-label">Student ID</label><input type="text"
+                                class="form-input" placeholder="e.g. 20240012"></div>
+                        <div class="form-group"><label class="form-label">Password</label><input type="password"
+                                class="form-input" placeholder="••••••••"></div>
+                        <button type="submit" class="btn btn-primary"
+                            style="width: 100%; padding: 1rem; font-size: 1.1rem; border-radius: 12px;">Sign In</button>
+                    </form>
+                </div>
+                <div class="auth-sidebar">
+                    <span class="promo-tag">Upcoming Event</span>
+                    <h2 class="promo-title">Annual Tech Symposium 2024</h2>
+                    <p class="promo-desc">Connect with thousands of students.</p>
+                    <div class="badge-group">
+                        <div class="info-badge"><i data-lucide="calendar"></i>
+                            <div>Oct 14-16, 2024<p>Main Hall</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE: DASHBOARD -->
+    <section id="dashboard-page" class="page-section">
+        <main class="dashboard-container">
+            <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">Welcome back, Alex! 👋</h1>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">You have 3 events this week.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(5,84,242,0.1); color: var(--primary);"><i
+                            data-lucide="calendar-check"></i></div><span class="stat-value">12</span><span
+                        class="stat-label">Registered</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(34,197,94,0.1); color: #22c55e;"><i
+                            data-lucide="check-circle-2"></i></div><span class="stat-value">45</span><span
+                        class="stat-label">Attended</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: #f59e0b;"><i
+                            data-lucide="star"></i></div><span class="stat-value">850</span><span
+                        class="stat-label">Points</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(168,85,247,0.1); color: #a855f7;"><i
+                            data-lucide="users"></i></div><span class="stat-value">08</span><span
+                        class="stat-label">Friends</span>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="main-view">
+                    <div class="event-section-header">
+                        <h3>Featured Events</h3><a href="javascript:void(0)"
+                            onclick="navigateTo('events-listing-page')">View all</a>
+                    </div>
+                    <div class="event-grid">
+                        <div class="event-card" onclick="navigateTo('details-page')" style="cursor: pointer;">
+                            <div class="event-image"
+                                style="background-image: url('assets/tech_event_thumb_1772902903570.png');"></div>
+                            <div class="event-details"><span class="event-category">Technology</span>
+                                <h4 class="event-title">Annual Tech Summit 2024</h4><button class="btn btn-outline"
+                                    style="width: 100%;">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="sidebar-view">
+                    <div class="widget">
+                        <h4>My Schedule</h4>
+                        <div class="schedule-list">
+                            <div class="schedule-item"><strong>23</strong>
+                                <div>Startup Pitch</div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </section>
+
+    <!-- PAGE: LISTING -->
+    <section id="events-listing-page" class="page-section">
+        <main class="dashboard-container">
+            <h1 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 2rem;">Upcoming Events</h1>
+            <div class="search-container">
+                <div class="search-input-group"><i data-lucide="search"></i><input type="text"
+                        placeholder="Search events..."></div>
+                <div class="dropdown-filter">All Categories</div>
+            </div>
+            <div class="event-grid">
+                <div class="event-card" onclick="navigateTo('details-page')" style="cursor: pointer;">
+                    <div class="event-image"
+                        style="background-image: url('assets/healthcare_event_thumb_1772903054859.png');"></div>
+                    <div class="event-details"><span class="event-category">Seminar</span>
+                        <h4 class="event-title">AI in Healthcare</h4>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- PAGE: DETAILS -->
+    <section id="details-page" class="page-section">
+        <main class="dashboard-container">
+            <div class="hero-banner" style="background-image: url('assets/tech_event_thumb_1772902903570.png');">
+                <div class="hero-overlay">
+                    <h1 style="font-size: 3.5rem; font-weight: 800;">Annual Tech Symposium 2024</h1>
+                    <button class="btn btn-primary" style="width: fit-content; margin-top: 1rem;"
+                        onclick="navigateTo('registration-page')">Register Now</button>
+                </div>
+            </div>
+            <div class="detail-grid">
+                <div class="detail-main">
+                    <h2>About</h2>
+                    <p style="margin-top: 1rem; color: var(--text-muted);">This is the premier tech event on campus.</p>
+                </div>
+                <div class="detail-sidebar">
+                    <div class="info-card">
+                        <h3>$15.00</h3><button class="btn btn-primary" style="width: 100%;"
+                            onclick="navigateTo('registration-page')">Register</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- PAGE: REGISTER -->
+    <section id="registration-page" class="page-section">
+        <div class="register-container">
+            <div class="register-header">
+                <h1>Registration</h1>
+                <p>Annual Tech Symposium 2024</p>
+            </div>
+            <form class="container"
+                onsubmit="event.preventDefault(); alert('Registered!'); navigateTo('dashboard-page')">
+                <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input"
+                        required></div>
+                <h5 style="margin-top: 2rem;">Workshop</h5>
+                <div class="choice-grid">
+                    <div class="choice-card active"
+                        onclick="this.parentElement.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+                        <h5>AI & ML</h5>
+                    </div>
+                    <div class="choice-card"
+                        onclick="this.parentElement.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+                        <h5>UX Design</h5>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+
+            // Show/Hide Nav
+            if (pageId === 'login-page') {
+                document.getElementById('main-nav').style.display = 'none';
+            } else {
+                document.getElementById('main-nav').style.display = 'block';
+            }
+
+            // Update Nav active state
+            document.querySelectorAll('.nav-link').forEach(l => l.style.color = 'var(--text-muted)');
+            if (pageId === 'dashboard-page') document.getElementById('nav-dashboard').style.color = 'var(--primary)';
+            if (pageId === 'events-listing-page') document.getElementById('nav-events').style.color = 'var(--primary)';
+
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+
+</html>

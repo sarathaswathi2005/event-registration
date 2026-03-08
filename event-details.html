@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annual Tech Symposium 2024 | CampusHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .hero-banner {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 4rem;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .detail-grid {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .detail-main {
+            flex: 2;
+        }
+
+        .detail-sidebar {
+            flex: 0.8;
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .speaker-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+        }
+
+        .map-box {
+            height: 300px;
+            background: #f1f5f9;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+
+<body style="background: #f8fafc;">
+
+    <!-- Navbar -->
+    <header style="background: white; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem;">
+        <div
+            style="padding: 1rem 4rem; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; width: 100%;">
+            <div class="logo"
+                style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 800; font-size: 1.1rem;">
+                <div style="background: var(--primary); color: white; padding: 0.2rem; border-radius: 4px;">
+                    <i data-lucide="graduation-cap" style="width: 18px; height: 18px;"></i>
+                </div>
+                <span>CampusHub Events</span>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-outline" style="padding: 0.6rem 1rem;"><i data-lucide="share-2"
+                        style="width: 18px;"></i></button>
+                <button class="btn btn-outline" style="padding: 0.6rem 1rem;"><i data-lucide="bookmark"
+                        style="width: 18px;"></i></button>
+                <button class="btn btn-primary" style="padding: 0.6rem 1.5rem;"
+                    onclick="location.href='register.html'">Register Now</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- Hero Section -->
+        <div class="hero-banner" style="background-image: url('assets/tech_event_thumb_1772902903570.png');">
+            <div class="hero-overlay">
+                <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem;">
+                    <span
+                        style="background: var(--primary); color: white; padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Technology</span>
+                    <span
+                        style="background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); padding: 0.4rem 1rem; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Flagship
+                        Event</span>
+                </div>
+                <h1 style="font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 2rem;">Annual Tech
+                    Symposium 2024</h1>
+                <div style="display: flex; gap: 2.5rem; font-size: 1rem; font-weight: 600;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="calendar"></i>
+                        <span>Oct 25, 2024</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="clock"></i>
+                        <span>10:00 AM - 4:00 PM</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i data-lucide="map-pin"></i>
+                        <span>Main Auditorium, Engineering Block</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-grid">
+            <div class="detail-main">
+                <h2
+                    style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem;">
+                    About the Event</h2>
+                <div style="font-size: 1.05rem; line-height: 1.8; color: #4b5563; margin-bottom: 3rem;">
+                    <p style="margin-bottom: 1.5rem;">Welcome to the most anticipated technology gathering of the year.
+                        The Annual Tech Symposium brings together visionary leaders, innovative students, and industry
+                        experts for a day of exploration and discovery.</p>
+                    <p>This year's theme, "Architecting the Future," focuses on the intersection of Artificial
+                        Intelligence, Sustainable Engineering, and Quantum Computing. Whether you're a seasoned
+                        developer or a curious freshman, there's something for everyone.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 4rem;">
+                    <div
+                        style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: flex-start; gap: 1.2rem;">
+                        <div style="color: var(--primary);"><i data-lucide="briefcase"></i></div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.4rem;">Hands-on workshops
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Learn with industry standard tools
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: flex-start; gap: 1.2rem;">
+                        <div style="color: var(--primary);"><i data-lucide="users-2"></i></div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.4rem;">Networking sessions
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Connect with top-tier tech
+                                recruiters</p>
+                        </div>
+                    </div>
+                    <div
+                        style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: flex-start; gap: 1.2rem;">
+                        <div style="color: var(--primary);"><i data-lucide="trophy"></i></div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.4rem;">$5,000 in prizes
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Prizes for the mini-hackathon
+                                winners</p>
+                        </div>
+                    </div>
+                    <div
+                        style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: flex-start; gap: 1.2rem;">
+                        <div style="color: var(--primary);"><i data-lucide="megaphone"></i></div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 0.4rem;">Keynote speeches
+                            </h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Speeches from Fortune 500 CTOs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2
+                    style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem;">
+                    Featured Speakers</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 4rem;">
+                    <div class="speaker-card">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Jenkins&background=e2e8f0"
+                            style="width: 64px; height: 64px; border-radius: 12px;">
+                        <div>
+                            <h4 style="font-weight: 800; font-size: 0.95rem;">Dr. Sarah Jenkins</h4>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Director of AI,
+                                Quantum Leap</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <img src="https://ui-avatars.com/api/?name=Marcus+Thorne&background=e2e8f0"
+                            style="width: 64px; height: 64px; border-radius: 12px;">
+                        <div>
+                            <h4 style="font-weight: 800; font-size: 0.95rem;">Marcus Thorne</h4>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Principal
+                                Engineer, CloudFlow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2
+                    style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem;">
+                    Location Map</h2>
+                <div class="map-box">
+                    <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=1000"
+                        style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3;">
+                    <div
+                        style="position: absolute; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                        <div
+                            style="background: var(--primary); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 0 0 10px rgba(5, 84, 242, 0.1);">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                    </div>
+                    <div
+                        style="position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.9); padding: 1.5rem; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h5 style="font-weight: 800;">Engineering Block, Building 4</h5>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">Main University Campus, Gate 2
+                                Entrance</p>
+                        </div>
+                        <a href="#"
+                            style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                            Directions <i data-lucide="external-link" style="width: 16px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-sidebar">
+                <div class="info-card">
+                    <span
+                        style="font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase;">Registration
+                        Fee</span>
+                    <div style="margin: 0.5rem 0 1.5rem;">
+                        <span style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">$15.00</span>
+                        <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">/ student</span>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="display: flex; gap: 1rem; font-size: 0.9rem; font-weight: 600;">
+                            <i data-lucide="info" style="width: 18px; color: var(--primary);"></i>
+                            <span>245 slots remaining</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; font-size: 0.9rem; font-weight: 600;">
+                            <i data-lucide="timer" style="width: 18px; color: var(--primary);"></i>
+                            <span>Registration ends in 3 days</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; font-size: 0.9rem; font-weight: 600;">
+                            <i data-lucide="utensils" style="width: 18px; color: var(--primary);"></i>
+                            <span>Lunch & Refreshments included</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary"
+                        style="width: 100%; padding: 1.2rem; font-size: 1.1rem; border-radius: 12px;"
+                        onclick="location.href='register.html'">Register Now</button>
+
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f1f5f9;">
+                        <h5
+                            style="font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem;">
+                            Event Organizer</h5>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div
+                                style="width: 42px; height: 42px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--primary); border: 2px solid white;">
+                                CT</div>
+                            <div>
+                                <h6 style="font-weight: 800; font-size: 0.9rem;">Campus Tech Society</h6>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Student-led
+                                    Organization</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline"
+                            style="width: 100%; margin-top: 1.5rem; font-size: 0.85rem; padding: 0.7rem;">Contact
+                            Organizer</button>
+                    </div>
+                </div>
+
+                <div
+                    style="background: rgba(5, 84, 242, 0.05); padding: 1.5rem; border-radius: 20px; border: 1px solid rgba(5, 84, 242, 0.1);">
+                    <div style="display: flex; gap: 0.75rem; color: var(--primary); margin-bottom: 1rem;">
+                        <i data-lucide="info" style="width: 20px;"></i>
+                        <h4 style="font-weight: 800;">Important Note</h4>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #4b5563; line-height: 1.6;">Please bring your digital student
+                        ID for verification at the entrance. QR codes for entry will be emailed 24 hours before the
+                        event.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer
+        style="margin-top: 6rem; padding: 4rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 800;">
+            <i data-lucide="graduation-cap"></i>
+            <span>CampusHub Events</span>
+        </div>
+        <div style="display: flex; gap: 2rem; font-weight: 600;">
+            <a href="#" style="text-decoration: none; color: inherit;">Privacy Policy</a>
+            <a href="#" style="text-decoration: none; color: inherit;">Terms of Service</a>
+            <a href="#" style="text-decoration: none; color: inherit;">Help Center</a>
+        </div>
+        <span>© 2024 University Student Affairs</span>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

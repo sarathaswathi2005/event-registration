@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Annual Tech Symposium 2024</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .register-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-header {
+            padding: 3rem 4rem;
+            border-bottom: 1px solid var(--border-color);
+            background: #f8fafc;
+        }
+
+        .progress-stepper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .progress-bar-container {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .form-section {
+            padding: 4rem;
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .choice-card {
+            border: 2px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .choice-card:hover {
+            border-color: var(--primary);
+            background: rgba(5, 84, 242, 0.02);
+        }
+
+        .choice-card.active {
+            border-color: var(--primary);
+            background: rgba(5, 84, 242, 0.05);
+            box-shadow: 0 0 0 4px rgba(5, 84, 242, 0.1);
+        }
+
+        .choice-card h5 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .choice-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .choice-card .radio-circle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+        }
+
+        .choice-card.active .radio-circle {
+            border-color: var(--primary);
+            background: var(--primary);
+            box-shadow: inset 0 0 0 4px white;
+        }
+    </style>
+</head>
+
+<body style="background: #e2e8f0; padding: 2rem;">
+
+    <div class="register-container">
+        <div class="register-header">
+            <div class="progress-stepper">
+                <span>Step 1 of 2: Registration</span>
+                <span>50% Complete</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" style="width: 50%;"></div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Annual Tech Symposium 2024</h1>
+                <p style="color: var(--text-muted); font-weight: 600;">Fill out your information to secure your seat for
+                    the main keynote and workshops.</p>
+            </div>
+        </div>
+
+        <form class="form-section" id="registrationForm">
+            <div class="form-section-title">
+                <i data-lucide="user" style="width: 20px; color: var(--primary);"></i>
+                <span>Student Information</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label" style="font-size: 0.9rem;">Full Name <span
+                            style="color: #ef4444;">*</span></label>
+                    <input type="text" class="form-input" style="padding-left: 1rem;" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="font-size: 0.9rem;">Student ID Number <span
+                            style="color: #ef4444;">*</span></label>
+                    <input type="text" class="form-input" style="padding-left: 1rem;" placeholder="ST-12345" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="font-size: 0.9rem;">Department <span
+                            style="color: #ef4444;">*</span></label>
+                    <select class="form-input"
+                        style="padding-left: 1rem; appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem;"
+                        required>
+                        <option value="">Select Department</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="eng">Engineering</option>
+                        <option value="arts">Arts & Humanities</option>
+                        <option value="bus">Business</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" style="font-size: 0.9rem;">Email Address <span
+                            style="color: #ef4444;">*</span></label>
+                    <input type="email" class="form-input" style="padding-left: 1rem;"
+                        placeholder="john.doe@college.edu" required>
+                </div>
+            </div>
+
+            <div class="form-section-title">
+                <i data-lucide="calendar" style="width: 20px; color: var(--primary);"></i>
+                <span>Event Preferences</span>
+            </div>
+
+            <h5 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 1.5rem;">Workshop Choice <span
+                    style="color: #ef4444;">*</span></h5>
+            <div class="choice-grid">
+                <div class="choice-card active">
+                    <div class="radio-circle"></div>
+                    <h5>AI & Machine Learning</h5>
+                    <p>Lab 301 • 10:00 AM</p>
+                </div>
+                <div class="choice-card">
+                    <div class="radio-circle"></div>
+                    <h5>UX Design Thinking</h5>
+                    <p>Studio A • 10:00 AM</p>
+                </div>
+                <div class="choice-card">
+                    <div class="radio-circle"></div>
+                    <h5>Blockchain Fundamentals</h5>
+                    <p>Main Hall • 2:00 PM</p>
+                </div>
+                <div class="choice-card">
+                    <div class="radio-circle"></div>
+                    <h5>Cloud Infrastructure</h5>
+                    <p>Lab 105 • 2:00 PM</p>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h5 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 1.5rem;">Meal Preference</h5>
+                <div style="display: flex; gap: 2rem;">
+                    <label
+                        style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <input type="radio" name="meal" value="non-veg" checked style="width: 18px; height: 18px;">
+                        Non-Veg
+                    </label>
+                    <label
+                        style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <input type="radio" name="meal" value="veg" style="width: 18px; height: 18px;">
+                        Vegetarian
+                    </label>
+                    <label
+                        style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; font-size: 0.9rem;">
+                        <input type="radio" name="meal" value="vegan" style="width: 18px; height: 18px;">
+                        Vegan
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 3rem;">
+                <label class="form-label" style="font-size: 0.9rem;">Special Accommodations / Comments</label>
+                <textarea class="form-input" style="padding: 1rem; min-height: 120px; resize: vertical;"
+                    placeholder="Any allergies or accessibility requirements?"></textarea>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <label
+                    style="display: flex; gap: 1rem; align-items: flex-start; cursor: pointer; font-size: 0.9rem; line-height: 1.5; color: var(--text-muted);">
+                    <input type="checkbox" style="margin-top: 0.3rem; width: 18px; height: 18px;" required>
+                    <span>I agree to the <a href="#"
+                            style="color: var(--primary); font-weight: 700; text-decoration: none;">Code of Conduct</a>
+                        and understand that registration is subject to verification of my student ID.</span>
+                </label>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; align-items: center; gap: 2rem;">
+                <button type="button" class="btn btn-outline"
+                    style="padding: 1rem 3rem; font-weight: 800; border: none; background: transparent;">Cancel</button>
+                <button type="submit" class="btn btn-primary"
+                    style="padding: 1rem 4rem; font-size: 1.1rem; border-radius: 12px; display: flex; gap: 0.75rem;">
+                    Confirm Registration <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+        </form>
+
+        <div
+            style="background: #f8fafc; padding: 2rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;">
+            Hosted by Department of Computer Science
+        </div>
+    </div>
+
+    <footer
+        style="margin-top: 4rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; padding-bottom: 4rem;">
+        <p style="margin-bottom: 1rem;">© 2024 College Event Management System. All rights reserved.</p>
+        <div style="display: flex; justify-content: center; gap: 2rem; font-weight: 700;">
+            <a href="#" style="text-decoration: none; color: inherit;">Support</a>
+            <a href="#" style="text-decoration: none; color: inherit;">Privacy Policy</a>
+            <a href="#" style="text-decoration: none; color: inherit;">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Simple choice card selection
+        const cards = document.querySelectorAll('.choice-card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                cards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Registration confirmed! Check your email for details.');
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+
+</html>
